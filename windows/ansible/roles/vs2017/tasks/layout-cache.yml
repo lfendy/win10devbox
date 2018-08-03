@@ -1,0 +1,20 @@
+---
+- name: check if Visual Studio 2017 layout has been extracted
+  win_stat:
+    path: VS2017_LAYOUT_PATH
+  register: layout_path
+
+- name: Download Visual Studio 2017 layout
+  win_get_url:
+    url: VS2017_LAYOUT_CACHE_URL
+    dest: VS2017_LAYOUT_ZIP_PATH
+  when: layout_path.stat.exists == false
+
+- name: Extract Visual Studio 2017 layout
+  win_unzip:
+    src: vS2017_LAYOUT_ZIP_Path
+    dest: VS2017_LAYOUT_PATH
+    creates: VS2017_LAYOUT_PATH
+
+
+

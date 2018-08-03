@@ -1,0 +1,10 @@
+---
+- name: Install useful tools
+  win_chocolatey:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - putty
+    - git
+    - 7zip
+    - python2
