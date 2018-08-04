@@ -14,4 +14,5 @@
     --add Microsoft.VisualStudio.Workload.NetCoreTools
     --add Microsoft.VisualStudio.Workload.Node
     --includeOptional
+    --passive
     --lang en-us

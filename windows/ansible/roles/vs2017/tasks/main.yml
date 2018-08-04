@@ -1,5 +1,14 @@
 ---
-  - include: layout-cache.yml
-    when: INSTALL_VS2017_FROM_CACHE
-  - include: layout-official.yml
-    when: not INSTALL_VS2017_FROM_CACHE
+- include: layout-cache.yml
+  when: INSTALL_VS2017_FROM_CACHE
+- include: layout-official.yml
+  when: not INSTALL_VS2017_FROM_CACHE
+- name: Install VS 2017
+  win_shell: >
+    {{VS2017_LAYOUT_PATH}}\vs_enterprise.exe --layout {{VS2017_LAYOUT_PATH}}
+    --add Microsoft.VisualStudio.Workload.NetWeb
+    --add Component.Github.VisualStudio
+    --add Microsoft.VisualStudio.Workload.NetCoreTools
+    --add Microsoft.VisualStudio.Workload.Node
+    --includeOptional
+    --passive
