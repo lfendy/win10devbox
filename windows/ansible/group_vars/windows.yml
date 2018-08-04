@@ -4,4 +4,5 @@ ansible_port: 5986
 ansible_connection: winrm
 WinRM self-signed certificates:
 ansible_winrm_server_cert_validation: ignore
+ansible_become: false
 

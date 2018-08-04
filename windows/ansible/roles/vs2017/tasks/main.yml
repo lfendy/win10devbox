@@ -5,7 +5,14 @@
   when: not INSTALL_VS2017_FROM_CACHE
 
 - name: Install VS 2017
-  win_shell: >
-    {{VS2017_LAYOUT_PATH}}\vs_enterprise.exe --quiet --norestart
+  win_package:
+    path: "{{ VS2017_LAYOUT_PATH }}\\vs_enterprise.exe"
+    product_id: '7cec34b5'
+    arguments:
+      - "--quiet"
+      - "--norestart"
+    state: present
+  become: yes
+  tags: try
 
 - include: resharper.yml
