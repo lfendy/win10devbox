@@ -14,5 +14,6 @@
     --add Microsoft.VisualStudio.Workload.NetCoreTools
     --add Microsoft.VisualStudio.Workload.Node
     --includeOptional
+    --wait
     --quiet
     --lang en-us

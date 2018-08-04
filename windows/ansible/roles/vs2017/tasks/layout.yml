@@ -1,0 +1,6 @@
+---
+- include: layout-cache.yml
+  when: INSTALL_VS2017_FROM_CACHE
+- include: layout-official.yml
+  when: not INSTALL_VS2017_FROM_CACHE
+
