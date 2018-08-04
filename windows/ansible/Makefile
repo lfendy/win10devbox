@@ -4,3 +4,6 @@ ping:
 
 run:
 	ansible-playbook -i hosts site.yml
+
+try:
+	ansible-playbook -i hosts site.yml --tags "try"

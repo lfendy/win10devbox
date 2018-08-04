@@ -3,16 +3,16 @@
 - name: copy vs2017 installer
   win_copy:
     src: files/vs_enterprise.exe
-    dest: c:\
+    dest: "{{ROOT_FOR_ANSIBLE_INSTALLS}}\\vs_enterprise.exe"
     force: no
 
 - name: create layout in layout directory
   win_shell: >
-    c:\vs_enterprise.exe --layout {{VS2017_LAYOUT_PATH}}
+    {{ROOT_FOR_ANSIBLE_INSTALLS}}\vs_enterprise.exe --layout {{VS2017_LAYOUT_PATH}}
     --add Microsoft.VisualStudio.Workload.NetWeb
     --add Component.Github.VisualStudio
     --add Microsoft.VisualStudio.Workload.NetCoreTools
     --add Microsoft.VisualStudio.Workload.Node
     --includeOptional
-    --passive
+    --quiet
     --lang en-us

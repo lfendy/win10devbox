@@ -1,0 +1,6 @@
+- name: ensure root folder for installations exist
+  win_file:
+    path: "{{ ROOT_FOR_ANSIBLE_INSTALLS }}"
+    state: directory
+
+

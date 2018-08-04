@@ -1,9 +1,7 @@
 ---
 
-#  - hosts: windows
-#    roles:
-#    - role: windevbox
-
 - hosts: windows
   roles:
+  - role: windevbox
   - role: vs2017
+

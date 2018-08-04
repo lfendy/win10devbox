@@ -1,0 +1,19 @@
+---
+- name: ensure resharper setup folder exist
+  win_file:
+    path: "{{ RESHARPER_SETUP_PATH }}"
+    state: directory
+
+- name: Download resharper
+  win_get_url:
+    url: "{{ RESHARPER_SETUP_URL }}"
+    dest: "{{ RESHARPER_SETUP_PATH }}\\resharper_setup.exe"
+    force: no
+
+- name: Install resharper
+  win_shell: >
+    {{ RESHARPER_SETUP_PATH }}\resharper_setup.exe
+    /VsVersion=15.0
+    /SpecificProductNames="dotMemory;dotTrace;dotCover;ReSharper;dotPeek"
+    /Silent=True
+
