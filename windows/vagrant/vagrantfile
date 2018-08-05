@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 5985, host: 5985, id: "winrm", auto_correct:true
 
     config.vm.provider :virtualbox do |v, override|
-        #v.gui = true
+        v.gui = true
         v.customize ["modifyvm", :id, "--cpus", 4]
         v.customize ["modifyvm", :id, "--memory", 8192]
         v.customize ["modifyvm", :id, "--vram", "128"] # 10 MB is the minimum to enable Virtualbox seamless mode
