@@ -5,12 +5,36 @@
     state: present
   with_items:
     - stylecop-vsix
-  tags: try
 
 # downloaded resharper stylecop from this location:
 # https://resharper-plugins.jetbrains.com/api/v2/package/StyleCop.StyleCop
-- name: Copy stylecop resharper extension
-  win_copy:
-    src: files/stylecop.stylecop.2018.1.2.nupkg
-    dest: "{{RESHARPER_SETUP_PATH}}\\stylecop.stylecop.2018.1.2.nupkg"
-    force: no
+#- name: Copy stylecop resharper extension
+#  win_copy:
+#    src: files/stylecop.stylecop.2018.1.2.nupkg
+#    dest: "{{RESHARPER_SETUP_PATH}}\\stylecop.stylecop.2018.1.2.nupkg"
+#    force: no
+#  tags: try
+#
+#- name: Copy stylecop resharper metadata from previous installation
+#  win_copy:
+#    src: files/StyleCop.StyleCop.JetMetadata.sstg
+#    dest: "{{RESHARPER_SETUP_PATH}}\\StyleCop.StyleCop.JetMetadata.sstg"
+#    force: no
+#  tags: try
+#
+#- name: unzip the stylecop nuget package
+#  win_unzip:
+#    src: "{{RESHARPER_SETUP_PATH}}\\stylecop.stylecop.2018.1.2.nupkg"
+#    dest: "{{ RESHARPER_SETUP_PATH }}\\stylecop"
+#    creates: "{{ RESHARPER_SETUP_PATH }}\\stylecop"
+#
+#- name: copies the package folder to resharper installation dir
+#  win_shell: >
+#
+
+# this is why dealing with any type of automation in .Net and Microsoft world is so difficult
+# https://youtrack.jetbrains.com/issue/RSRP-436208#comment=27-1667146
+# The official suggestion of how to automate resharper extension installation is to hack into an undocumented feature of the resharper software.
+# This solution might not work beyond this resharper version (2018.2)
+#
+# unzip stylecop

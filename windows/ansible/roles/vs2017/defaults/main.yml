@@ -6,3 +6,4 @@ INSTALL_VS2017_FROM_CACHE: false
 
 RESHARPER_SETUP_PATH: "{{ROOT_FOR_ANSIBLE_INSTALLS}}\\resharpersetup"
 RESHARPER_SETUP_URL: https://download.jetbrains.com/resharper/JetBrains.ReSharperUltimate.2018.1.4.exe
+RESHARPER_INSTALLATION_PATH: ""
