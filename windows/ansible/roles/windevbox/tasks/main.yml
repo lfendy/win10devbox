@@ -10,4 +10,6 @@
     - git
     - 7zip
     - python2
+    - nodejs
+    - yarn
 

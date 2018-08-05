@@ -1,0 +1,16 @@
+---
+- name: Install stylecop visual studio extensions
+  win_chocolatey:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - stylecop-vsix
+  tags: try
+
+# downloaded resharper stylecop from this location:
+# https://resharper-plugins.jetbrains.com/api/v2/package/StyleCop.StyleCop
+- name: Copy stylecop resharper extension
+  win_copy:
+    src: files/stylecop.stylecop.2018.1.2.nupkg
+    dest: "{{RESHARPER_SETUP_PATH}}\\stylecop.stylecop.2018.1.2.nupkg"
+    force: no

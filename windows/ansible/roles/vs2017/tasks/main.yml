@@ -32,3 +32,4 @@
   when: install_result is changed
 
 - include: resharper.yml
+- include: vs-extensions.yml
