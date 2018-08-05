@@ -4,8 +4,8 @@
 Vagrant.require_version ">= 1.6.2"
 
 Vagrant.configure("2") do |config|
-    config.vm.define "vagrant-windows-10-preview"
-    config.vm.box = "ferrarimarco/windows-10-x64-enterprise"
+    config.vm.define "vagrant-windows-10"
+    config.vm.box = "win10-x64-enterprise"
     config.vm.communicator = "winrm"
 
     config.vm.guest = :windows
@@ -16,8 +16,8 @@ Vagrant.configure("2") do |config|
 
     config.vm.provider :virtualbox do |v, override|
         #v.gui = true
-        v.customize ["modifyvm", :id, "--cpus", 2]
-        v.customize ["modifyvm", :id, "--memory", 2048]
+        v.customize ["modifyvm", :id, "--cpus", 4]
+        v.customize ["modifyvm", :id, "--memory", 8192]
         v.customize ["modifyvm", :id, "--vram", "128"] # 10 MB is the minimum to enable Virtualbox seamless mode
         v.customize ["setextradata", "global", "GUI/MaxGuestResolution", "any"]
         v.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
