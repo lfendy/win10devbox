@@ -1,0 +1,160 @@
+{
+  "builders": [
+    {
+      "communicator": "winrm",
+      "disk_size": "{{user `disk_size`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "floppy/_download.cmd",
+        "floppy/_packer_config.cmd",
+        "floppy/_post_update_install.bat",
+        "floppy/00-run-all-scripts.cmd",
+        "floppy/01-install-wget.cmd",
+        "floppy/autologon.bat",
+        "floppy/console.bat",
+        "floppy/disablewinupdate.bat",
+        "floppy/explorer.bat",
+        "floppy/fixnetwork.ps1",
+        "floppy/hibernation.bat",
+        "floppy/install-winrm.cmd",
+        "floppy/pagefile.bat",
+        "floppy/passwordchange.bat",
+        "floppy/powerconfig.bat",
+        "floppy/update.bat",
+        "floppy/zz-start-transports.cmd"
+      ],
+      "guest_additions_mode": "attach",
+      "guest_os_type": "{{user `guest_os_type`}}",
+      "hard_drive_interface": "{{user `hard_drive_interface`}}",
+      "headless": "{{ user `headless` }}",
+      "iso_checksum": "{{ user `iso_checksum` }}",
+      "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+      "iso_url": "{{ user `iso_url` }}",
+      "output_directory": "builds/virtualbox-iso/{{user `template`}}",
+      "post_shutdown_delay": "{{ user `post_shutdown_delay` }}",
+      "shutdown_command": "{{ user `shutdown_command`}}",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{ user `memory` }}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{ user `cpus` }}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "{{ user `vram` }}"
+        ],
+        [
+          "setextradata",
+          "{{.Name}}",
+          "VBoxInternal/CPUM/CMPXCHG16B",
+          "1"
+        ]
+      ],
+      "vm_name": "{{ user `vm_name` }}",
+      "winrm_password": "{{user `winrm_password`}}",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
+      "winrm_username": "{{user `winrm_username`}}"
+    },
+    {
+      "communicator": "winrm",
+      "guest_additions_mode": "disable",
+      "headless": "{{ user `headless` }}",
+      "name": "vagrant-cloud-upload",
+      "output_directory": "builds/virtualbox-ovf/vagrant-cloud-upload/{{user `template`}}",
+      "post_shutdown_delay": "{{ user `post_shutdown_delay` }}",
+      "shutdown_command": "{{ user `shutdown_command`}}",
+      "source_path": "builds/virtualbox-iso/{{user `template`}}/{{user `vm_name`}}.ovf",
+      "type": "virtualbox-ovf",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{ user `memory` }}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{ user `cpus` }}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "{{ user `vram` }}"
+        ],
+        [
+          "setextradata",
+          "{{.Name}}",
+          "VBoxInternal/CPUM/CMPXCHG16B",
+          "1"
+        ]
+      ],
+      "vm_name": "{{ user `vm_name` }}",
+      "winrm_password": "{{user `winrm_password`}}",
+      "winrm_timeout": "{{user `winrm_timeout`}}",
+      "winrm_username": "{{user `winrm_username`}}"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "compression_level": 1,
+        "keep_input_artifact": true,
+        "only": ["vagrant-cloud-upload"],
+        "output": "builds/vagrant/{{user `template`}}-{{.Provider}}.box",
+        "type": "vagrant",
+        "vagrantfile_template": "vagrantfile-templates/vagrantfile-eval-win10x64-enterprise.tpl"
+      }
+    ]
+  ],
+  "provisioners": [
+    {
+      "environment_vars": [
+        "UPDATE={{user `update`}}"
+      ],
+      "only": ["virtualbox-iso"],
+      "scripts": [
+        "script/vagrant.bat",
+        "script/vmtool.bat",
+        "script/clean.bat",
+        "script/uninstall-7zip.bat"
+      ],
+      "type": "windows-shell"
+    }
+  ],
+  "variables": {
+    "autounattend": "floppy/eval-win10x64-enterprise/Autounattend.xml",
+    "box_tag": "ferrarimarco/windows-10-x64-enterprise",
+    "cpus": "2",
+    "disk_size": "40960",
+    "guest_os_type": "Windows10_64",
+    "hard_drive_interface": "sata",
+    "headless": "false",
+    "iso_checksum": "0df79911ceff0f8b5cf4e4aeb1bd1039",
+    "iso_checksum_type": "md5",
+    "iso_url": "win10e_1703.iso",
+    "memory": "2048",
+    "post_shutdown_delay": "30s",
+    "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+    "template": "eval-win10x64-enterprise",
+    "update": "true",
+    "version": "1.0.0",
+    "vm_name": "eval-win10x64-enterprise",
+    "vram": "96",
+    "winrm_password": "vagrant",
+    "winrm_timeout": "10000s",
+    "winrm_username": "vagrant"
+  }
+}
