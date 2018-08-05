@@ -1,0 +1,8 @@
+---
+- name: copy showFileExtension script
+  win_copy:
+    src: files/showFileExtension.ps1
+    dest: "{{ROOT_FOR_ANSIBLE_INSTALLS}}\\showFileExtension.ps1"
+
+- name: force show file extension
+  win_shell: "{{ROOT_FOR_ANSIBLE_INSTALLS}}\\showFileExtension.ps1"

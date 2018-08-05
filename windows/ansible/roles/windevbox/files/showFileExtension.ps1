@@ -10,3 +10,6 @@ function RefreshExplorer()
 {
     Stop-Process -processName: Explorer -force
 }
+
+ShowFileExtensions
+RefreshExplorer

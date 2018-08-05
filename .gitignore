@@ -2,3 +2,4 @@ w10e_1703.iso
 site.retry
 .vagrant
 windows/packer/builds
+windows/vagrant/ansible_cache

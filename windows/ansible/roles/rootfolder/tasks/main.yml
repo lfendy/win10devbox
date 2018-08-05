@@ -2,5 +2,6 @@
   win_file:
     path: "{{ ROOT_FOR_ANSIBLE_INSTALLS }}"
     state: directory
+  tags: try
 
 

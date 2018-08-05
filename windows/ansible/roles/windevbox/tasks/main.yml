@@ -1,4 +1,6 @@
 ---
+- include: showfileext.yml
+
 - name: Install useful tools
   win_chocolatey:
     name: '{{ item }}'
@@ -8,10 +10,4 @@
     - git
     - 7zip
     - python2
-
-- name: copy useful script
-  win_copy:
-    src: files/showFileExtension.ps1
-    dest: "{{ROOT_FOR_ANSIBLE_INSTALLS}}\\showFileExtension.ps1"
-    force: no
 
