@@ -12,5 +12,5 @@ run:
 
 .PHONY: try
 try:
-	ansible-playbook -i hosts site.yml --tags "try"
+	ansible-playbook -i hosts site.yml --tags "try" -vvv
 
