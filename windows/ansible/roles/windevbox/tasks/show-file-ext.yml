@@ -1,0 +1,13 @@
+---
+- name: show file extension
+  win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: HideFileExt
+    data: 0
+    type: dword
+    state: present
+  register: ext_result
+
+- name: force restart explorer to apply change
+  win_shell: "Stop-Process -processName: Explorer -force"
+  when: ext_result is changed

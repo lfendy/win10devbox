@@ -1,5 +1,7 @@
 ---
-- include: showfileext.yml
+- include: show-file-ext.yml
+
+- include: turn-uac-off.yml
 
 - name: Install useful tools
   win_chocolatey:
@@ -12,4 +14,5 @@
     - python2
     - nodejs
     - yarn
+    - conemu
 

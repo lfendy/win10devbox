@@ -6,28 +6,27 @@
   with_items:
     - stylecop-vsix
 
-# downloaded resharper stylecop from this location:
-# https://resharper-plugins.jetbrains.com/api/v2/package/StyleCop.StyleCop
-#- name: Copy stylecop resharper extension
-#  win_copy:
-#    src: files/stylecop.stylecop.2018.1.2.nupkg
-#    dest: "{{RESHARPER_SETUP_PATH}}\\stylecop.stylecop.2018.1.2.nupkg"
-#    force: no
-#  tags: try
-#
-#- name: Copy stylecop resharper metadata from previous installation
-#  win_copy:
-#    src: files/StyleCop.StyleCop.JetMetadata.sstg
-#    dest: "{{RESHARPER_SETUP_PATH}}\\StyleCop.StyleCop.JetMetadata.sstg"
-#    force: no
-#  tags: try
-#
-#- name: unzip the stylecop nuget package
-#  win_unzip:
-#    src: "{{RESHARPER_SETUP_PATH}}\\stylecop.stylecop.2018.1.2.nupkg"
-#    dest: "{{ RESHARPER_SETUP_PATH }}\\stylecop"
-#    creates: "{{ RESHARPER_SETUP_PATH }}\\stylecop"
-#
+  # downloaded resharper stylecop from this location:
+  # https://resharper-plugins.jetbrains.com/api/v2/package/StyleCop.StyleCop
+- name: Copy stylecop resharper extension
+  win_copy:
+    src: files/stylecop.stylecop.2018.1.2.nupkg
+    dest: "{{RESHARPER_SETUP_PATH}}\\stylecop.zip"
+    force: no
+
+- name: unzip the stylecop nuget package
+  win_unzip:
+    src: "{{RESHARPER_SETUP_PATH}}\\stylecop.zip"
+    dest: "{{ RESHARPER_SETUP_PATH }}\\stylecop"
+    creates: "{{ RESHARPER_SETUP_PATH }}\\stylecop\\DotFiles"
+
+- name: Copy stylecop resharper metadata from previous installation
+  win_copy:
+    src: files/StyleCop.StyleCop.JetMetadata.sstg
+    dest: "{{RESHARPER_SETUP_PATH}}\\stylecop\\DotFiles\\StyleCop.StyleCop.JetMetadata.sstg"
+    force: no
+
+
 #- name: copies the package folder to resharper installation dir
 #  win_shell: >
 #

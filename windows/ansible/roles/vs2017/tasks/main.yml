@@ -7,19 +7,6 @@
 - include: layout.yml
   when: install_path.stat.exists == false
 
-- name: turn UAC off
-  win_regedit:
-    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system
-    name: EnableLUA
-    data: 0
-    type: dword
-    state: present
-  register: uac_result
-
-- name: reboot after disabling UAC
-  win_reboot:
-  when: uac_result is changed
-
 - name: Install VS2017
   win_shell: >
     {{ VS2017_LAYOUT_PATH }}\vs_enterprise.exe

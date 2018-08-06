@@ -14,6 +14,6 @@
   win_shell: >
     {{ RESHARPER_SETUP_PATH }}\resharper_setup.exe
     /VsVersion=15.0
-    /SpecificProductNames="dotMemory;dotTrace;dotCover;ReSharper;dotPeek"
+    /SpecificProductNames="ReSharper;dotPeek"
     /Silent=True
 
