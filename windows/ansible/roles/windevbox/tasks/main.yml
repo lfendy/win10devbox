@@ -17,3 +17,7 @@
     - conemu
     - winmerge
 
+- include: set-npm-python-config.yml
+
+- include: npm-msbuild-fix.yml
+

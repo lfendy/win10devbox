@@ -13,7 +13,24 @@
     --add Component.Github.VisualStudio
     --add Microsoft.VisualStudio.Workload.NetCoreTools
     --add Microsoft.VisualStudio.Workload.Node
+    --add Microsoft.VisualStudio.Component.Windows10SDK.16299.Desktop
+    --add Microsoft.VisualStudio.Component.Windows10SDK.16299.UWP
+    --add Microsoft.VisualStudio.Component.Windows10SDK.16299.UWP.Native
+    --add Microsoft.VisualStudio.Component.VC.CoreIde
+    --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64
     --includeOptional
     --wait
     --quiet
     --lang en-us
+  tags: try
+
+# Also have to include desktop development components for node-gyp to work:
+# Windows 10 SDK (10.0.16299.0) for UWP: C#, VB, JS
+# Windows 10 SDK (10.0.16299.0) for UWP: C++
+# Windows 10 SDK (10.0.16299.0) for Desktop C++ [x86 and x64]
+# Visual Studio C++ core features
+# VC++ 2017 v141 toolset (x86,x64)
+# -- from:
+# https://github.com/nodejs/node-gyp/issues/1278
+# and
+# https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-enterprise#desktop-development-with-c

@@ -1,0 +1,11 @@
+---
+
+# This fix is to handle:
+#    Error MSB4132: The tools version "2.0" is unrecognized. Available tools versions are "4.0".
+# This failure occurd when performing "b setup" for the first time
+# The fix was found on: https://github.com/chjj/pty.js/issues/60
+
+- name: install windows build tools for npm (THIS TAKES A LONG TIME) and set msvs_version in global config
+  win_shell: >
+    npm install --global --production windows-build-tools;
+    npm config set msvs_version 2017 --global
