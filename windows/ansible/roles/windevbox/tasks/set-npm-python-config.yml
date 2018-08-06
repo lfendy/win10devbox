@@ -3,8 +3,10 @@
 # This fix is to handle:
 #    node gyp error, unable to find python2 in path
 # This failure occurd when performing "b setup" for the first time
+# See: https://github.com/nodejs/node-gyp#installation
 
 - name: set python in npm config
   win_shell: >
-    npm config set python c:\python27\python.exe --global
+    npm config set python {{ PYTHON2_INSTALL_PATH }}\python.exe --global
+  tags: try
 

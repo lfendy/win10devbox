@@ -22,7 +22,6 @@
     --wait
     --quiet
     --lang en-us
-  tags: try
 
 # Also have to include desktop development components for node-gyp to work:
 # Windows 10 SDK (10.0.16299.0) for UWP: C#, VB, JS
