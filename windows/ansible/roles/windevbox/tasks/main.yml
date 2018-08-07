@@ -3,19 +3,7 @@
 
 - include: turn-uac-off.yml
 
-- name: Install useful tools
-  win_chocolatey:
-    name: '{{ item }}'
-    state: present
-  with_items:
-    - putty
-    - git
-    - 7zip
-    - python2
-    - nodejs
-    - yarn
-    - conemu
-    - winmerge
+- include: chocolatey.yml
 
 - include: set-npm-python-config.yml
 

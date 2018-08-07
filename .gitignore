@@ -3,3 +3,5 @@ site.retry
 .vagrant
 windows/packer/builds
 windows/vagrant/ansible_cache
+packer/builds
+vagrant/ansible_cache

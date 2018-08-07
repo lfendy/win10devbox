@@ -4,8 +4,9 @@
     path: "{{ VS2017_INSTALL_PATH }}"
   register: install_path
 
-- include: layout.yml
+- include: vs-layout.yml
   when: install_path.stat.exists == false
+  tags: try
 
 - name: Install VS2017
   win_shell: >
@@ -13,10 +14,12 @@
     --quiet --norestart --wait
   register: install_result
   when: install_path.stat.exists == false
+  tags: try
 
 - name: reboot after VS2017 install
   win_reboot:
   when: install_result is changed
+  tags: try
 
 - include: resharper.yml
 - include: vs-extensions.yml

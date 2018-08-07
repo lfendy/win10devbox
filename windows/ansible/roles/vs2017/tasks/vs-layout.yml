@@ -13,11 +13,7 @@
     --add Component.Github.VisualStudio
     --add Microsoft.VisualStudio.Workload.NetCoreTools
     --add Microsoft.VisualStudio.Workload.Node
-    --add Microsoft.VisualStudio.Component.Windows10SDK.16299.Desktop
-    --add Microsoft.VisualStudio.Component.Windows10SDK.16299.UWP
-    --add Microsoft.VisualStudio.Component.Windows10SDK.16299.UWP.Native
-    --add Microsoft.VisualStudio.Component.VC.CoreIde
-    --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64
+    --add Microsoft.VisualStudio.Workload.NativeDesktop
     --includeOptional
     --wait
     --quiet
